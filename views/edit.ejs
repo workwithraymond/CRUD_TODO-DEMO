@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/style.css">
+    <!--Google Font-->
+</head>
+<body>
+    <section class="todo-container">
+        <h2>Edit List Item</h2>
+        <section class="todo">
+            
+            <ul class="todo-list">
+                <% todoTasks.forEach(task => { %>
+                    <% if (task._id == idTask) { %>
+                        <li class = 'todo-list-item' >
+                            <form action="/edit/<%= task._id %>"
+                            method = "POST">
+                            <input type="text" name="title" value="<%=task.title %>" >
+                            <textarea  id="" cols="45" rows="6" name="content"><%=task.content%></textarea>
+                            <button type="submit" class="confirm">Confirm</button>
+                            <a href="/" class="cancel">Cancel</a>
+                        </form>
+                        </li>
+                        <% } else { %>  
+                           <li class="todo-list-item">
+                                    <div class="todo-list-item-title">
+                                        <%= task.title %>
+                                    </div>
+                                    <div class="todo-list-item-content">
+                                        <%= task.content %>
+                                    </div>
+                                    <a href="/edit/<%=task._id %>" class="edit"><span class="fas fa-edit"></span></a>
+                                    <a href="/remove/<%=task._id %>" class="remove"><span class="fas fa-times"></span></a>
+                                </li>
+                               <% } %>
+                               <% }) %>
+                            </ul>                
+           
+        </section>
+
+    </section>
+</body>
+</html>
